@@ -24,7 +24,7 @@ public class Movie {
 	private String poster;
 	@ManyToMany
 	@JoinColumn(name="actors")
-	private ArrayList<Actor> actors;
+	private List<Actor> actors;
 	public Movie() {
 		
 	}

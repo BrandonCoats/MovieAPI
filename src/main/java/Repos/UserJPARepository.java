@@ -12,7 +12,7 @@ import Models.User;
 
 public interface UserJPARepository extends JpaRepository<User,Integer>{
 
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	//@Lock(LockModeType.PESSIMISTIC_WRITE)
 	Optional<User> findById(Integer id);
 
 

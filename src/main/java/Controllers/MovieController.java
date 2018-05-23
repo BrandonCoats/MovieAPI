@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class MovieController {
 		movieRepo.saveAndFlush(mov);
 	}
 	@RequestMapping(method=RequestMethod.PUT)
+	@Transactional
 	public void updateMovie(@RequestBody Movie mov)
 	{
 		
@@ -45,6 +47,7 @@ public class MovieController {
 //		existing.addActor(act);
 //	}
 	@RequestMapping(path="/{id}",method=RequestMethod.DELETE)
+	@Transactional
 	public void deleteMovie(@PathVariable int id)
 	{
 		Movie existing = retrieveMovie(id);
@@ -54,6 +57,7 @@ public class MovieController {
 	}
 	
 	@RequestMapping(path="/{id}",method=RequestMethod.GET)
+	@Transactional
 	public Movie retrieveMovie(@PathVariable int id)
 	{
 		return movieRepo.findById(id).orElse(null);

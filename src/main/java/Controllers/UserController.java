@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class UserController {
 		userRepo.saveAndFlush(user);
 	}
 	@RequestMapping(method=RequestMethod.PUT)
+	@Transactional
 	public void updateUser(@RequestBody User user)
 	{
 		User existing = userRepo.findById(user.getId()).orElse(null);
@@ -40,6 +42,7 @@ public class UserController {
 	}
 
 	@RequestMapping(path="/{id}",method=RequestMethod.DELETE)
+	@Transactional
 	public void deleteUser(@PathVariable int id)
 	{
 		User existing = retrieveUser(id);
@@ -49,6 +52,7 @@ public class UserController {
 		}
 	}
 	@RequestMapping(path="/{id}",method=RequestMethod.GET)
+	@Transactional
 	public User retrieveUser(@PathVariable int id)
 	{
 		return userRepo.findById(id).orElse(null);

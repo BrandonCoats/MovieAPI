@@ -23,7 +23,7 @@ public class Movie {
 	private String title;
 	private String poster;
 	@ManyToMany
-	@JoinColumn(name="actors")
+	@JoinColumn(name="roles")
 	private List<Actor> actors;
 	public Movie() {
 		

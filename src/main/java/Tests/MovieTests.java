@@ -18,7 +18,7 @@ public class MovieTests extends FunctionalTest{
 		JsonObject obj = new JsonObject();
 		obj.addProperty("id", 1);
 		obj.addProperty("genre", "Horror");
-		obj.addProperty("description", "Alien");
+		obj.addProperty("title", "Alien");
 		obj.addProperty("poster", "SomeURL");
 		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies";
 
@@ -52,9 +52,9 @@ public class MovieTests extends FunctionalTest{
 	@Test
 	public void TestUpdateMovieById() {
 		JsonObject obj = new JsonObject();
-		obj.addProperty("id", 1);
+		obj.addProperty("id", 11);
 		obj.addProperty("genre", "Horror");
-		obj.addProperty("description", "Alien");
+		obj.addProperty("title", "Alien");
 		obj.addProperty("poster", "SomeNewURL");
 		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies";
 		String request = obj.toString();

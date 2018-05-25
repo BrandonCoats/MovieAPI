@@ -1,21 +1,35 @@
 package Models;
 
-import java.io.File;
+
+import org.springframework.data.annotation.Transient;
 
 //annotate for mongo later
 public class Poster {
+
+@Transient
 public String id;
-public File image;
+
+public String title;
+
+public String image;
+
+public String getTitle() {
+	return title;
+}
+public void setTitle(String title) {
+	this.title = title;
+}
 public String getId() {
 	return id;
 }
 public void setId(String id) {
 	this.id = id;
 }
-public File getImage() {
+public String getImage() {
 	return image;
 }
-public void setImage(File image) {
+public void setImage(String image) {
 	this.image = image;
 }
+
 }

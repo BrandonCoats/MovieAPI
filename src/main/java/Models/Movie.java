@@ -19,9 +19,13 @@ public class Movie {
 	@Column(name="movies")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
 	private String genre;
+	
 	private String title;
-	private String poster;
+	
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String posterId;
 	@ManyToMany
 	@JoinColumn(name="roles")
 	private List<Actor> actors;
@@ -45,12 +49,21 @@ public class Movie {
 		this.title = title;
 	}
 
-	public String getPoster() {
-		return poster;
+
+	public String getPosterId() {
+		return posterId;
 	}
 
-	public void setPoster(String poster) {
-		this.poster = poster;
+	public void setPosterId(String posterId) {
+		this.posterId = posterId;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
 	public int getId() {
@@ -61,7 +74,7 @@ public class Movie {
 	}
 
 	public void copy(Movie mov) {
-		this.setPoster(mov.getPoster());
+		this.setPosterId(mov.getPosterId());
 		
 	}
 

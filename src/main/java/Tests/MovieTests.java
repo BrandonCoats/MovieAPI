@@ -30,7 +30,24 @@ public class MovieTests extends FunctionalTest{
 		.post(locationToHit)
 		.then().statusCode(200);
 	}
-	
+	@Test
+	public void TestAddPosterToMovie() {
+
+		JsonObject obj = new JsonObject();
+		obj.addProperty("id", 1);
+		obj.addProperty("genre", "Horror");
+		obj.addProperty("title", "Alien");
+		obj.addProperty("poster", "SomeURL");
+		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies";
+
+		String request = obj.toString();
+		given()
+		.contentType("application/json\r\n")
+		.body(request)
+		.when()
+		.post(locationToHit)
+		.then().statusCode(200);
+	}
 	@Test
 	public void TestGetAllMovies() {
 		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies";

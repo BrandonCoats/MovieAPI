@@ -13,14 +13,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Models.Actor;
 import Models.Movie;
+import Models.Poster;
 import Repos.MoviesJPARepository;
+import Repos.PosterRepository;
 
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
-	//ArrayList<Movie> movies = new ArrayList<Movie>();
+	
 	@Autowired
 	private MoviesJPARepository movieRepo;
+	@Autowired
+	private PosterRepository posterRepo;
+	
+	@RequestMapping(path="/{id}",method=RequestMethod.POST)
+	public void addPosterForMovie(@RequestBody Poster pos,@PathVariable int id)
+	{
+		Movie mov = retrieveMovie(id);
+		pos.id = mov.getPosterId();
+		posterRepo.save(pos);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public void addMovie(@RequestBody Movie mov)
 	{

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import Models.Actor;
 import Models.Movie;
 import Models.Poster;
 import Repos.MoviesJPARepository;
@@ -26,12 +25,18 @@ public class MovieController {
 	@Autowired
 	private PosterRepository posterRepo;
 	
-	@RequestMapping(path="/{id}",method=RequestMethod.POST)
+	@RequestMapping(path="/poster/{id}",method=RequestMethod.POST)
 	public void addPosterForMovie(@RequestBody Poster pos,@PathVariable int id)
 	{
 		Movie mov = retrieveMovie(id);
-		pos.id = mov.getPosterId();
+		pos.setId(mov.getPosterId());
 		posterRepo.save(pos);
+	}
+	@RequestMapping(path="/poster/{id}",method=RequestMethod.GET)
+	@Transactional
+	public Poster retrievePoster(@PathVariable int id)
+	{
+		return posterRepo.findById(id).orElse(null);
 	}
 	@RequestMapping(method=RequestMethod.POST)
 	public void addMovie(@RequestBody Movie mov)

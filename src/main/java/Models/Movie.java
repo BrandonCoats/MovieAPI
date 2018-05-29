@@ -24,8 +24,8 @@ public class Movie {
 	
 	private String title;
 	
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String posterId;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private int posterId;
 	@ManyToMany
 	@JoinColumn(name="roles")
 	private List<Actor> actors;
@@ -50,11 +50,11 @@ public class Movie {
 	}
 
 
-	public String getPosterId() {
+	public int getPosterId() {
 		return posterId;
 	}
 
-	public void setPosterId(String posterId) {
+	public void setPosterId(int posterId) {
 		this.posterId = posterId;
 	}
 

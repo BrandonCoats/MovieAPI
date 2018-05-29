@@ -8,7 +8,7 @@ import Models.Poster;
 
 public interface PosterRepository extends MongoRepository<Poster, String> {
 
-    public Optional<Poster> findById(String firstName);
+    public Optional<Poster> findById(Integer id);
     public Optional<Poster> findByTitle(String movieTitle);
 
 }

@@ -15,7 +15,7 @@ public class UserTests extends FunctionalTest{
 	@Test
 	public void TestAddUser() {
 		JsonObject obj = new JsonObject();
-		obj.addProperty("id", 22);
+		obj.addProperty("id", 1);
 		obj.addProperty("email", "tog@gmail.com");
 		obj.addProperty("username", "TheCaveMan");
 		obj.addProperty("password", "TheFunkyChicken");
@@ -33,7 +33,7 @@ public class UserTests extends FunctionalTest{
 	@Test
 	public void TestUpdateUserById() {
 		JsonObject obj = new JsonObject();
-		obj.addProperty("id", 20);
+		obj.addProperty("id", 2);
 		obj.addProperty("email", "tog@gmail.com");
 		obj.addProperty("username", "TheCaveMan");
 		obj.addProperty("password", "TheFunkyChicken");
@@ -59,7 +59,7 @@ public class UserTests extends FunctionalTest{
 	}
 	@Test
 	public void TestGetUserById() {
-		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "users/22";
+		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "users/2";
 		given()
 		.when()
 		.get(locationToHit)
@@ -68,7 +68,7 @@ public class UserTests extends FunctionalTest{
 	}
 	@Test
 	public void DeleteUserById() {
-		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "users/22";
+		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "users/1";
 		given()
 		.when()
 		.delete(locationToHit)

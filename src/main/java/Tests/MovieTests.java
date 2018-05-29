@@ -37,7 +37,7 @@ public class MovieTests extends FunctionalTest{
 		obj.addProperty("id", 1);
 		obj.addProperty("title", "Alien");
 		obj.addProperty("image", "http://www.nounsite.com/wp-content/uploads/2017/05/A-on-a-test-1.jpg");
-		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies/poster/20";
+		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies/poster/21";
 
 		String request = obj.toString();
 		given()

@@ -26,6 +26,7 @@ public class MovieController {
 	private PosterRepository posterRepo;
 	
 	@RequestMapping(path="/poster/{id}",method=RequestMethod.POST)
+	@Transactional
 	public void addPosterForMovie(@RequestBody Poster pos,@PathVariable int id)
 	{
 		Movie mov = retrieveMovie(id);

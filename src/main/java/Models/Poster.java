@@ -11,8 +11,6 @@ import org.springframework.data.annotation.Transient;
 public class Poster {
 
 	@Id
-	@Column(name="poster")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int id;
 
 	public String title;

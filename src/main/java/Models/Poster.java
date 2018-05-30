@@ -15,7 +15,7 @@ public class Poster {
 
 	public String title;
 
-	public String image;
+	public byte[] image;
 
 	public String getTitle() {
 		return title;
@@ -29,10 +29,10 @@ public class Poster {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

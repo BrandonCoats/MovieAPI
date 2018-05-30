@@ -2,14 +2,25 @@ package Tests;
 
 import org.junit.Test;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import Models.Actor;
 import io.restassured.RestAssured;
+import io.restassured.internal.util.IOUtils;
 
 import static io.restassured.RestAssured.given;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 public class MovieTests extends FunctionalTest{
 
 	@Test
@@ -36,7 +47,20 @@ public class MovieTests extends FunctionalTest{
 		JsonObject obj = new JsonObject();
 		obj.addProperty("id", 1);
 		obj.addProperty("title", "Alien");
-		obj.addProperty("image", "http://www.nounsite.com/wp-content/uploads/2017/05/A-on-a-test-1.jpg");
+		try 
+		{
+			String workDir =  System.getProperty("user.dir");
+			workDir = workDir + "src\\main\\resources\\Images\\alienTest.jpg";
+			BufferedImage imageToInput = ImageIO.read(new File(workDir));
+			ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+			ImageIO.write(imageToInput, "jpg", byteStream);
+			byte[] imageBytes = byteStream.toByteArray();
+			String encoded = Base64.getEncoder().encodeToString(imageBytes);
+			obj.addProperty("image", encoded);
+		} catch (IOException e) 
+		{
+			System.out.println("Failed to read bytes from image/file");
+		}
 		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies/poster/21";
 
 		String request = obj.toString();
@@ -49,7 +73,7 @@ public class MovieTests extends FunctionalTest{
 	}
 	@Test
 	public void TestGetPosterById() {
-		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies/poster/9";
+		String locationToHit =  RestAssured.baseURI + RestAssured.basePath + "movies/poster/21";
 		given()
 		.when()
 		.get(locationToHit)
